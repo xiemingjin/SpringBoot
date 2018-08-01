@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <script th:src="@{/common/js/jqery.js}"></script>
+</head>
+<body>
+<h2>用户列表</h2>
+<div>
+    <ul>
+        <li  th:each="user:${users}">
+            <span th:text="${user.id}"></span>-
+            <span th:text="${user.name}"></span>-
+            <span th:text="${user.age}"></span>-
+            <span th:text="${user.address}"></span>
+        </li>
+    </ul>
+</div>
+
+<div id="sssssss">
+
+
+   <input type="text" id="sss">
+</div>
+</body>
+<script th:inline="javascript">
+$(function(){
+
+    var rootUrl=/*[[@{/}]]*/ '';
+    alert(rootUrl);
+    alert(22);
+    $("#sss").val(2222);
+});
+
+</script>
+</html>

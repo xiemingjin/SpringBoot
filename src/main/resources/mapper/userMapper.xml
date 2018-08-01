@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiemj.dao.UserDao">
+
+
+    <resultMap type="com.xiemj.pojo.User" id="userMap">
+        <id property="uid" column="uid"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <collection property="roles" ofType="com.xiemj.pojo.Role">
+            <id property="rid" column="rid"/>
+            <result property="rname" column="rname"/>
+            <collection property="modules" ofType="com.xiemj.pojo.Module">
+                <id property="mid" column="mid"/>
+                <result property="mname" column="mname"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <!--目的：为Dao接口方法提供SQL语句-->
+    <select id="queryUserByName" resultMap="userMap"  parameterType="string" >
+       SELECT u.*,r.*,m.* FROM user u inner join user_role ur on ur.uid=u.uid
+        inner join role r on r.rid=ur.rid
+        inner join module_role mr on mr.rid=r.rid
+        inner join module m on mr.mid=m.mid
+        WHERE username=#{username};
+    </select>
+
+</mapper>
