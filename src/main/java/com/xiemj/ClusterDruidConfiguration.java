@@ -104,7 +104,7 @@ public class ClusterDruidConfiguration {
     }
 
 
-    @Bean
+ /*   @Bean
     public ServletRegistrationBean statViewServlet(){
         //创建servlet注册实体
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid/*");
@@ -118,7 +118,7 @@ public class ClusterDruidConfiguration {
         //是否可以重置数据
         servletRegistrationBean.addInitParameter("resetEnable","false");
         return servletRegistrationBean;
-    }
+    }*/
 
     @Bean
     public FilterRegistrationBean statFilter(){
