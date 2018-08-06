@@ -3,66 +3,77 @@ package com.xiemj;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
-public class DruidConfiguration {
-    @Value("${spring.datasource.url}")
+@MapperScan(basePackages = "com.xiemj.dao",sqlSessionFactoryRef = "masterSqlSessionFactory")
+public class MasterDruidConfiguration {
+
+
+    static final String MAPPER_LOCATION = "classpath:mapper/master/*.xml";
+
+    @Value("${spring.datasource.master.url}")
     private String dbUrl;
-    @Value("${spring.datasource.username}")
+    @Value("${spring.datasource.master.username}")
     private String username;
-    @Value("${spring.datasource.password}")
+    @Value("${spring.datasource.master.password}")
     private String password;
-    @Value("${spring.datasource.driverClassName}")
+    @Value("${spring.datasource.master.driverClassName}")
     private String driverClassName;
-    @Value("${spring.datasource.initialSize}")
+    @Value("${spring.datasource.master.initialSize}")
     private int initialSize;
-    @Value("${spring.datasource.minIdle}")
+    @Value("${spring.datasource.master.minIdle}")
     private int minIdle;
-    @Value("${spring.datasource.maxActive}")
+    @Value("${spring.datasource.master.maxActive}")
     private int maxActive;
-    @Value("${spring.datasource.maxWait}")
+    @Value("${spring.datasource.master.maxWait}")
     private int maxWait;
-    @Value("${spring.datasource.timeBetweenEvictionRunsMillis}")
+    @Value("${spring.datasource.master.timeBetweenEvictionRunsMillis}")
     private int timeBetweenEvictionRunsMillis;
-    @Value("${spring.datasource.minEvictableIdleTimeMillis}")
+    @Value("${spring.datasource.master.minEvictableIdleTimeMillis}")
     private int minEvictableIdleTimeMillis;
-    @Value("${spring.datasource.validationQuery}")
+    @Value("${spring.datasource.master.validationQuery}")
     private String validationQuery;
-    @Value("${spring.datasource.testWhileIdle}")
+    @Value("${spring.datasource.master.testWhileIdle}")
     private boolean testWhileIdle;
-    @Value("${spring.datasource.testOnBorrow}")
+    @Value("${spring.datasource.master.testOnBorrow}")
     private boolean testOnBorrow;
-    @Value("${spring.datasource.testOnReturn}")
+    @Value("${spring.datasource.master.testOnReturn}")
     private boolean testOnReturn;
-    @Value("${spring.datasource.poolPreparedStatements}")
+    @Value("${spring.datasource.master.poolPreparedStatements}")
     private boolean poolPreparedStatements;
-    @Value("${spring.datasource.maxPoolPreparedStatementPerConnectionSize}")
+    @Value("${spring.datasource.master.maxPoolPreparedStatementPerConnectionSize}")
     private int maxPoolPreparedStatementPerConnectionSize;
-    @Value("${spring.datasource.filters}")
+    @Value("${spring.datasource.master.filters}")
     private String filters;
-    @Value("${spring.datasource.connectionProperties}")
+    @Value("${spring.datasource.master.connectionProperties}")
     private String connectionProperties;
-    @Value("${spring.datasource.useGlobalDataSourceStat}")
+    @Value("${spring.datasource.master.useGlobalDataSourceStat}")
     private boolean useGlobalDataSourceStat;
 
-    @Bean(destroyMethod = "close", initMethod = "init")        //声明其为Bean实例
+    @Bean(destroyMethod = "close", initMethod = "init",name = "masterDataSource")        //声明其为Bean实例
     @Primary  //在同样的DataSource中，首先使用被标注的DataSource
-    public DataSource dataSource(){
+    public DataSource masterDataSource(){
         DruidDataSource datasource = new DruidDataSource();
         datasource.setUrl(this.dbUrl);
         datasource.setUsername(username);
         datasource.setPassword(password);
         datasource.setDriverClassName(driverClassName);
-
         //configuration
         datasource.setInitialSize(initialSize);
         datasource.setMinIdle(minIdle);
@@ -84,6 +95,13 @@ public class DruidConfiguration {
         }
         datasource.setConnectionProperties(connectionProperties);
         return datasource;
+    }
+
+
+    @Bean(name = "masterTransactionManager")
+    @Primary
+    public DataSourceTransactionManager masterTransactionManager() {
+        return new DataSourceTransactionManager(masterDataSource());
     }
 
 
@@ -112,5 +130,22 @@ public class DruidConfiguration {
         //忽略过滤的形式
         filterRegistrationBean.addInitParameter("exclusions","*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return filterRegistrationBean;
+    }
+
+    @Bean(name = "masterSqlSessionFactory")
+    @Primary
+    public SqlSessionFactory masterSqlSessionFactory(@Qualifier("masterDataSource") DataSource masterDataSource)
+            throws Exception {
+        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        sessionFactory.setDataSource(masterDataSource);
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
+                .getResources(MasterDruidConfiguration.MAPPER_LOCATION));
+        return sessionFactory.getObject();
+    }
+
+    @Bean(name = "masterSqlSessionTemplate")
+    @Primary
+    public SqlSessionTemplate setSqlSessionTemplate(@Qualifier("masterSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
+        return new SqlSessionTemplate(sqlSessionFactory);
     }
 }

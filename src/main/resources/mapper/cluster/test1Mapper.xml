@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiemj.dao.TestDao">
+<mapper namespace="com.xiemj.dao1.TestDao1">
     <!--目的：为Dao接口方法提供SQL语句-->
     <select id="queryList" resultType="java.util.Map">
-        SELECT * FROM company LIMIT 0,1
+        SELECT * FROM ac_role LIMIT 0,1
     </select>
 
 </mapper>

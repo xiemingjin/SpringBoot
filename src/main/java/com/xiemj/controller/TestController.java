@@ -22,4 +22,10 @@ public class TestController extends BaseController {
         return super.toJsonResponse(reusltMap);
     }
 
+    @RequestMapping("/add1")
+    public ResponseEntity<String> add1( ){
+        Map<String,Object> reusltMap = testService.queryList1();
+        return super.toJsonResponse(reusltMap);
+    }
+
 }

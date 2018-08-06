@@ -1,3 +1,4 @@
+/*
 package com.xiemj;
 
 
@@ -16,11 +17,13 @@ import org.springframework.context.annotation.Configuration;
 import java.util.LinkedHashMap;
 
 
+*/
 /**
  * shiro的配置类
  * @author Administrator
  *
- */
+ *//*
+
 @Configuration
 public class ShiroConfiguration {
 
@@ -82,3 +85,4 @@ public class ShiroConfiguration {
         return advisor;
     }
 }
+*/
