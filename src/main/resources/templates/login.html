@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <base href="">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>登录</title>
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>
+    <link th:href="@{/css/login/base.css}"  rel="stylesheet"/>
+    <link th:href="@{/css/login/iconfont.css}"   rel="stylesheet"/>
+    <link  th:href="@{/css/login/reg.css}"  rel="stylesheet" />
+</head>
+<body>
+<div id="ajax-hook"></div>
+<div class="wrap">
+    <div class="wpn">
+        <div class="form-data pos">
+            <!--<a href=""><img src="css/login/login-logo.png" class="head-logo"></a>-->
+            <div class="change-login">
+                <p class="account_number on">账号登录</p>
+                <!-- <p class="message">短信登录</p> -->
+            </div>
+            <div class="form1">
+                <p class="p-input pos">
+                    <label for="username">请输入用户名</label>
+                    <input type="text" id="username">
+                </p>
+                <p class="p-input pos">
+                    <label for="password">请输入密码</label>
+                    <input type="password" id="password" autocomplete="new-password">
+                </p>
+            <div class="r-forget cl">
+                <a href="" class="z">账号注册</a>
+                <a href="" class="y">忘记密码</a>
+            </div>
+            <button class="lang-btn off log-btn" id="submitForm">登录</button>
+            <div class="third-party">
+                <a href="" class="log-qq icon-qq-round"></a>
+                <a href="" class="log-qq icon-weixin"></a>
+                <a href="" class="log-qq icon-sina1"></a>
+            </div>
+            <p class="right">Powered by xiemj © 2018</p>
+        </div>
+    </div>
+</div>
+</div>
+<script th:src="@{/common/js/jqery.js}"></script>
+<script th:src="@{/common/js/SysTool.js}"></script>
+<script th:src="@{/js/login/agree.js}"></script>
+<script th:src="@{/plugins/layer/layer.min.js}"></script>
+<script th:src="@{/js/login/login.js}"></script>
+
+</body>
+<script  type="text/javascript" th:inline="javascript">
+    var path  = [[@{/}]];
+    var login = new Login();
+    login.init(path);
+</script>
+</html>

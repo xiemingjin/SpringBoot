@@ -1,6 +1,6 @@
 package com.xiemj.service;
 
-import com.xiemj.dao.UserDao;
+import com.xiemj.dao.SysDao;
 import com.xiemj.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class UserService {
+public class SysService {
+
+
 
     @Autowired
-    private UserDao userDao;
+    private SysDao dao;
 
     public User findUserByName (String username )
     {
@@ -24,9 +26,8 @@ public class UserService {
        /* String username = (String) paramsMap.get("username");*/
         resultMap.put("resultCode",true);
         List<Map<String,Object>> resultList = new ArrayList<>();
-        user = userDao.queryUserByName(username);
+        user = dao.queryUserByName(username);
      /*   resultMap.put("resultData",resultList);*/
         return  user;
     }
-
 }

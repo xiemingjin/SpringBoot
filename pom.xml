@@ -67,6 +67,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
+<!--热部署-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 <!--shiro 权限依赖-->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
@@ -122,6 +129,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork><!--注意要修改这里热部署-->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

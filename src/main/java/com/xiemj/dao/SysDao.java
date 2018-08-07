@@ -1,9 +1,8 @@
 package com.xiemj.dao;
 
 import com.xiemj.pojo.User;
-import org.apache.ibatis.annotations.Mapper;
 
-public interface UserDao {
+public interface SysDao {
 
     User queryUserByName(String username);
 }

@@ -1,13 +1,13 @@
-/*
+
 package com.xiemj;
 
 
 import com.xiemj.common.shiro.AuthRealm;
 import com.xiemj.common.shiro.CredentialsMatcher;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,13 +16,11 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.LinkedHashMap;
 
-
-*/
 /**
  * shiro的配置类
- * @author Administrator
  *
- *//*
+ * @author Administrator
+ */
 
 @Configuration
 public class ShiroConfiguration {
@@ -37,12 +35,16 @@ public class ShiroConfiguration {
         //配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
         //表示可以匿名访问
-        filterChainDefinitionMap.put("/pages/login.html*", "anon");
-        filterChainDefinitionMap.put("/user/loginUser", "anon");
+        filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/index", "anon");
         filterChainDefinitionMap.put("/test/add", "anon");
-          filterChainDefinitionMap.put("/logout*","anon");
-        filterChainDefinitionMap.put("/*", "authc");
+        filterChainDefinitionMap.put("/logout*","anon");
+        filterChainDefinitionMap.put("/common/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/plugins/**", "anon");
         //表示需要认证才可以访问
+        filterChainDefinitionMap.put("/*", "authc");
         filterChainDefinitionMap.put("/**", "authc");
         filterChainDefinitionMap.put("/*.*", "authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -85,4 +87,3 @@ public class ShiroConfiguration {
         return advisor;
     }
 }
-*/

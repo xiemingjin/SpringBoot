@@ -3,7 +3,7 @@ package com.xiemj.common.shiro;
 import com.xiemj.pojo.Module;
 import com.xiemj.pojo.Role;
 import com.xiemj.pojo.User;
-import com.xiemj.service.UserService;
+import com.xiemj.service.SysService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -19,14 +19,14 @@ public class AuthRealm extends AuthorizingRealm
 {
 
     @Autowired
-    private UserService userService;
+    private SysService service;
     //认证.登录
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //获取用户输入的token
         UsernamePasswordToken utoken=(UsernamePasswordToken) token;
         String username = utoken.getUsername();
-        User user = userService.findUserByName(username);
+        User user = service.findUserByName(username);
         //放入shiro.调用CredentialsMatcher检验密码
         return new SimpleAuthenticationInfo(user, user.getPassword(),this.getClass().getName());
     }
