@@ -28,6 +28,9 @@ public class AuthRealm extends AuthorizingRealm
         String username = utoken.getUsername();
         User user = service.findUserByName(username);
         //放入shiro.调用CredentialsMatcher检验密码
+
+
+
         return new SimpleAuthenticationInfo(user, user.getPassword(),this.getClass().getName());
     }
     //授权
@@ -37,11 +40,13 @@ public class AuthRealm extends AuthorizingRealm
         User user=(User) principal.fromRealm(this.getClass().getName()).iterator().next();
         List<String> permissions=new ArrayList<>();
         Set<Role> roles = user.getRoles();
+        //shiro控制格式
         if(roles.size()>0) {
             for(Role role : roles) {
                 Set<Module> modules = role.getModules();
                 if(modules.size()>0) {
-                    for(Module module : modules) {
+                    for(Module module : modules)
+                    {
                         permissions.add(module.getMname());
                     }
                 }

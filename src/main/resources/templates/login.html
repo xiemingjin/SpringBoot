@@ -54,7 +54,7 @@
 
 </body>
 <script  type="text/javascript" th:inline="javascript">
-    var path  = [[@{/}]];
+    var path = /*[[@{/}]]*/ '';
     var login = new Login();
     login.init(path);
 </script>
