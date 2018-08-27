@@ -17,7 +17,7 @@ public class TestController extends BaseController {
     @Autowired
     private TestService testService;
 
-    @RequestMapping("/add")
+        @RequestMapping(value = "/add")
     @Log("调用的是add")
     public ResponseEntity<String> add( ){
         Map<String,Object> reusltMap = testService.queryList();
