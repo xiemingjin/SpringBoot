@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiemj.dao.companyMapper" >
+  <resultMap id="BaseResultMap" type="com.xiemj.pojo.company" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="idistrictid" property="idistrictid" jdbcType="BIGINT" />
+    <result column="sdistrictname" property="sdistrictname" jdbcType="VARCHAR" />
+    <result column="itownid" property="itownid" jdbcType="BIGINT" />
+    <result column="stownname" property="stownname" jdbcType="VARCHAR" />
+    <result column="saddress" property="saddress" jdbcType="VARCHAR" />
+    <result column="saddresssx" property="saddresssx" jdbcType="VARCHAR" />
+    <result column="saddresssy" property="saddresssy" jdbcType="VARCHAR" />
+    <result column="slevel" property="slevel" jdbcType="VARCHAR" />
+    <result column="scategory" property="scategory" jdbcType="VARCHAR" />
+    <result column="sproduct" property="sproduct" jdbcType="VARCHAR" />
+    <result column="iwater" property="iwater" jdbcType="REAL" />
+    <result column="iability" property="iability" jdbcType="REAL" />
+    <result column="ifactability" property="ifactability" jdbcType="REAL" />
+    <result column="swry" property="swry" jdbcType="VARCHAR" />
+    <result column="ipftype" property="ipftype" jdbcType="INTEGER" />
+    <result column="ipfid" property="ipfid" jdbcType="INTEGER" />
+    <result column="spfname" property="spfname" jdbcType="VARCHAR" />
+    <result column="ipfok" property="ipfok" jdbcType="INTEGER" />
+    <result column="ifx" property="ifx" jdbcType="INTEGER" />
+    <result column="izxjc" property="izxjc" jdbcType="INTEGER" />
+    <result column="STANDENTERID" property="standenterid" jdbcType="VARCHAR" />
+    <result column="ssjjl" property="ssjjl" jdbcType="VARCHAR" />
+    <result column="srivername" property="srivername" jdbcType="VARCHAR" />
+    <result column="iriverid" property="iriverid" jdbcType="INTEGER" />
+    <result column="ilevel" property="ilevel" jdbcType="INTEGER" />
+    <result column="uniscid" property="uniscid" jdbcType="VARCHAR" />
+    <result column="ibuild" property="ibuild" jdbcType="INTEGER" />
+    <result column="inet" property="inet" jdbcType="INTEGER" />
+    <result column="iok" property="iok" jdbcType="INTEGER" />
+    <result column="dupdatetime" property="dupdatetime" jdbcType="TIMESTAMP" />
+    <result column="sxkzbh" property="sxkzbh" jdbcType="VARCHAR" />
+    <result column="dxkz" property="dxkz" jdbcType="TIMESTAMP" />
+    <result column="sfxjb" property="sfxjb" jdbcType="VARCHAR" />
+    <result column="istatus" property="istatus" jdbcType="INTEGER" />
+    <result column="ireporterid" property="ireporterid" jdbcType="INTEGER" />
+    <result column="sreportername" property="sreportername" jdbcType="VARCHAR" />
+    <result column="dreport" property="dreport" jdbcType="TIMESTAMP" />
+    <result column="iapproverid" property="iapproverid" jdbcType="INTEGER" />
+    <result column="sapprovername" property="sapprovername" jdbcType="VARCHAR" />
+    <result column="sapprovedes" property="sapprovedes" jdbcType="VARCHAR" />
+    <result column="dapprove" property="dapprove" jdbcType="TIMESTAMP" />
+    <result column="sbz" property="sbz" jdbcType="VARCHAR" />
+    <result column="sqyzt" property="sqyzt" jdbcType="VARCHAR" />
+    <result column="xkzcod" property="xkzcod" jdbcType="REAL" />
+    <result column="xkznh3n" property="xkznh3n" jdbcType="REAL" />
+    <result column="xkztp" property="xkztp" jdbcType="REAL" />
+    <result column="xkzfsl" property="xkzfsl" jdbcType="REAL" />
+    <result column="xkzend" property="xkzend" jdbcType="DATE" />
+    <result column="xkzyz" property="xkzyz" jdbcType="VARCHAR" />
+    <result column="xkzname" property="xkzname" jdbcType="VARCHAR" />
+    <result column="bdeleted" property="bdeleted" jdbcType="TINYINT" />
+    <result column="sfileids" property="sfileids" jdbcType="VARCHAR" />
+    <result column="bssqy" property="bssqy" jdbcType="TINYINT" />
+    <result column="dutydistrictid" property="dutydistrictid" jdbcType="BIGINT" />
+    <result column="tmp" property="tmp" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sname, idistrictid, sdistrictname, itownid, stownname, saddress, saddresssx, 
+    saddresssy, slevel, scategory, sproduct, iwater, iability, ifactability, swry, ipftype, 
+    ipfid, spfname, ipfok, ifx, izxjc, STANDENTERID, ssjjl, srivername, iriverid, ilevel, 
+    uniscid, ibuild, inet, iok, dupdatetime, sxkzbh, dxkz, sfxjb, istatus, ireporterid, 
+    sreportername, dreport, iapproverid, sapprovername, sapprovedes, dapprove, sbz, sqyzt, 
+    xkzcod, xkznh3n, xkztp, xkzfsl, xkzend, xkzyz, xkzname, bdeleted, sfileids, bssqy, 
+    dutydistrictid, tmp
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiemj.pojo.company" >
+    insert into company (id, sname, idistrictid, 
+      sdistrictname, itownid, stownname, 
+      saddress, saddresssx, saddresssy, 
+      slevel, scategory, sproduct, 
+      iwater, iability, ifactability, 
+      swry, ipftype, ipfid, 
+      spfname, ipfok, ifx, 
+      izxjc, STANDENTERID, ssjjl, 
+      srivername, iriverid, ilevel, 
+      uniscid, ibuild, inet, 
+      iok, dupdatetime, sxkzbh, 
+      dxkz, sfxjb, istatus, 
+      ireporterid, sreportername, dreport, 
+      iapproverid, sapprovername, sapprovedes, 
+      dapprove, sbz, sqyzt, 
+      xkzcod, xkznh3n, xkztp, xkzfsl, 
+      xkzend, xkzyz, xkzname, 
+      bdeleted, sfileids, bssqy, 
+      dutydistrictid, tmp)
+    values (#{id,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{idistrictid,jdbcType=BIGINT}, 
+      #{sdistrictname,jdbcType=VARCHAR}, #{itownid,jdbcType=BIGINT}, #{stownname,jdbcType=VARCHAR}, 
+      #{saddress,jdbcType=VARCHAR}, #{saddresssx,jdbcType=VARCHAR}, #{saddresssy,jdbcType=VARCHAR}, 
+      #{slevel,jdbcType=VARCHAR}, #{scategory,jdbcType=VARCHAR}, #{sproduct,jdbcType=VARCHAR}, 
+      #{iwater,jdbcType=REAL}, #{iability,jdbcType=REAL}, #{ifactability,jdbcType=REAL}, 
+      #{swry,jdbcType=VARCHAR}, #{ipftype,jdbcType=INTEGER}, #{ipfid,jdbcType=INTEGER}, 
+      #{spfname,jdbcType=VARCHAR}, #{ipfok,jdbcType=INTEGER}, #{ifx,jdbcType=INTEGER}, 
+      #{izxjc,jdbcType=INTEGER}, #{standenterid,jdbcType=VARCHAR}, #{ssjjl,jdbcType=VARCHAR}, 
+      #{srivername,jdbcType=VARCHAR}, #{iriverid,jdbcType=INTEGER}, #{ilevel,jdbcType=INTEGER}, 
+      #{uniscid,jdbcType=VARCHAR}, #{ibuild,jdbcType=INTEGER}, #{inet,jdbcType=INTEGER}, 
+      #{iok,jdbcType=INTEGER}, #{dupdatetime,jdbcType=TIMESTAMP}, #{sxkzbh,jdbcType=VARCHAR}, 
+      #{dxkz,jdbcType=TIMESTAMP}, #{sfxjb,jdbcType=VARCHAR}, #{istatus,jdbcType=INTEGER}, 
+      #{ireporterid,jdbcType=INTEGER}, #{sreportername,jdbcType=VARCHAR}, #{dreport,jdbcType=TIMESTAMP}, 
+      #{iapproverid,jdbcType=INTEGER}, #{sapprovername,jdbcType=VARCHAR}, #{sapprovedes,jdbcType=VARCHAR}, 
+      #{dapprove,jdbcType=TIMESTAMP}, #{sbz,jdbcType=VARCHAR}, #{sqyzt,jdbcType=VARCHAR}, 
+      #{xkzcod,jdbcType=REAL}, #{xkznh3n,jdbcType=REAL}, #{xkztp,jdbcType=REAL}, #{xkzfsl,jdbcType=REAL}, 
+      #{xkzend,jdbcType=DATE}, #{xkzyz,jdbcType=VARCHAR}, #{xkzname,jdbcType=VARCHAR}, 
+      #{bdeleted,jdbcType=TINYINT}, #{sfileids,jdbcType=VARCHAR}, #{bssqy,jdbcType=TINYINT}, 
+      #{dutydistrictid,jdbcType=BIGINT}, #{tmp,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiemj.pojo.company" >
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sname != null" >
+        sname,
+      </if>
+      <if test="idistrictid != null" >
+        idistrictid,
+      </if>
+      <if test="sdistrictname != null" >
+        sdistrictname,
+      </if>
+      <if test="itownid != null" >
+        itownid,
+      </if>
+      <if test="stownname != null" >
+        stownname,
+      </if>
+      <if test="saddress != null" >
+        saddress,
+      </if>
+      <if test="saddresssx != null" >
+        saddresssx,
+      </if>
+      <if test="saddresssy != null" >
+        saddresssy,
+      </if>
+      <if test="slevel != null" >
+        slevel,
+      </if>
+      <if test="scategory != null" >
+        scategory,
+      </if>
+      <if test="sproduct != null" >
+        sproduct,
+      </if>
+      <if test="iwater != null" >
+        iwater,
+      </if>
+      <if test="iability != null" >
+        iability,
+      </if>
+      <if test="ifactability != null" >
+        ifactability,
+      </if>
+      <if test="swry != null" >
+        swry,
+      </if>
+      <if test="ipftype != null" >
+        ipftype,
+      </if>
+      <if test="ipfid != null" >
+        ipfid,
+      </if>
+      <if test="spfname != null" >
+        spfname,
+      </if>
+      <if test="ipfok != null" >
+        ipfok,
+      </if>
+      <if test="ifx != null" >
+        ifx,
+      </if>
+      <if test="izxjc != null" >
+        izxjc,
+      </if>
+      <if test="standenterid != null" >
+        STANDENTERID,
+      </if>
+      <if test="ssjjl != null" >
+        ssjjl,
+      </if>
+      <if test="srivername != null" >
+        srivername,
+      </if>
+      <if test="iriverid != null" >
+        iriverid,
+      </if>
+      <if test="ilevel != null" >
+        ilevel,
+      </if>
+      <if test="uniscid != null" >
+        uniscid,
+      </if>
+      <if test="ibuild != null" >
+        ibuild,
+      </if>
+      <if test="inet != null" >
+        inet,
+      </if>
+      <if test="iok != null" >
+        iok,
+      </if>
+      <if test="dupdatetime != null" >
+        dupdatetime,
+      </if>
+      <if test="sxkzbh != null" >
+        sxkzbh,
+      </if>
+      <if test="dxkz != null" >
+        dxkz,
+      </if>
+      <if test="sfxjb != null" >
+        sfxjb,
+      </if>
+      <if test="istatus != null" >
+        istatus,
+      </if>
+      <if test="ireporterid != null" >
+        ireporterid,
+      </if>
+      <if test="sreportername != null" >
+        sreportername,
+      </if>
+      <if test="dreport != null" >
+        dreport,
+      </if>
+      <if test="iapproverid != null" >
+        iapproverid,
+      </if>
+      <if test="sapprovername != null" >
+        sapprovername,
+      </if>
+      <if test="sapprovedes != null" >
+        sapprovedes,
+      </if>
+      <if test="dapprove != null" >
+        dapprove,
+      </if>
+      <if test="sbz != null" >
+        sbz,
+      </if>
+      <if test="sqyzt != null" >
+        sqyzt,
+      </if>
+      <if test="xkzcod != null" >
+        xkzcod,
+      </if>
+      <if test="xkznh3n != null" >
+        xkznh3n,
+      </if>
+      <if test="xkztp != null" >
+        xkztp,
+      </if>
+      <if test="xkzfsl != null" >
+        xkzfsl,
+      </if>
+      <if test="xkzend != null" >
+        xkzend,
+      </if>
+      <if test="xkzyz != null" >
+        xkzyz,
+      </if>
+      <if test="xkzname != null" >
+        xkzname,
+      </if>
+      <if test="bdeleted != null" >
+        bdeleted,
+      </if>
+      <if test="sfileids != null" >
+        sfileids,
+      </if>
+      <if test="bssqy != null" >
+        bssqy,
+      </if>
+      <if test="dutydistrictid != null" >
+        dutydistrictid,
+      </if>
+      <if test="tmp != null" >
+        tmp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="idistrictid != null" >
+        #{idistrictid,jdbcType=BIGINT},
+      </if>
+      <if test="sdistrictname != null" >
+        #{sdistrictname,jdbcType=VARCHAR},
+      </if>
+      <if test="itownid != null" >
+        #{itownid,jdbcType=BIGINT},
+      </if>
+      <if test="stownname != null" >
+        #{stownname,jdbcType=VARCHAR},
+      </if>
+      <if test="saddress != null" >
+        #{saddress,jdbcType=VARCHAR},
+      </if>
+      <if test="saddresssx != null" >
+        #{saddresssx,jdbcType=VARCHAR},
+      </if>
+      <if test="saddresssy != null" >
+        #{saddresssy,jdbcType=VARCHAR},
+      </if>
+      <if test="slevel != null" >
+        #{slevel,jdbcType=VARCHAR},
+      </if>
+      <if test="scategory != null" >
+        #{scategory,jdbcType=VARCHAR},
+      </if>
+      <if test="sproduct != null" >
+        #{sproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="iwater != null" >
+        #{iwater,jdbcType=REAL},
+      </if>
+      <if test="iability != null" >
+        #{iability,jdbcType=REAL},
+      </if>
+      <if test="ifactability != null" >
+        #{ifactability,jdbcType=REAL},
+      </if>
+      <if test="swry != null" >
+        #{swry,jdbcType=VARCHAR},
+      </if>
+      <if test="ipftype != null" >
+        #{ipftype,jdbcType=INTEGER},
+      </if>
+      <if test="ipfid != null" >
+        #{ipfid,jdbcType=INTEGER},
+      </if>
+      <if test="spfname != null" >
+        #{spfname,jdbcType=VARCHAR},
+      </if>
+      <if test="ipfok != null" >
+        #{ipfok,jdbcType=INTEGER},
+      </if>
+      <if test="ifx != null" >
+        #{ifx,jdbcType=INTEGER},
+      </if>
+      <if test="izxjc != null" >
+        #{izxjc,jdbcType=INTEGER},
+      </if>
+      <if test="standenterid != null" >
+        #{standenterid,jdbcType=VARCHAR},
+      </if>
+      <if test="ssjjl != null" >
+        #{ssjjl,jdbcType=VARCHAR},
+      </if>
+      <if test="srivername != null" >
+        #{srivername,jdbcType=VARCHAR},
+      </if>
+      <if test="iriverid != null" >
+        #{iriverid,jdbcType=INTEGER},
+      </if>
+      <if test="ilevel != null" >
+        #{ilevel,jdbcType=INTEGER},
+      </if>
+      <if test="uniscid != null" >
+        #{uniscid,jdbcType=VARCHAR},
+      </if>
+      <if test="ibuild != null" >
+        #{ibuild,jdbcType=INTEGER},
+      </if>
+      <if test="inet != null" >
+        #{inet,jdbcType=INTEGER},
+      </if>
+      <if test="iok != null" >
+        #{iok,jdbcType=INTEGER},
+      </if>
+      <if test="dupdatetime != null" >
+        #{dupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sxkzbh != null" >
+        #{sxkzbh,jdbcType=VARCHAR},
+      </if>
+      <if test="dxkz != null" >
+        #{dxkz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sfxjb != null" >
+        #{sfxjb,jdbcType=VARCHAR},
+      </if>
+      <if test="istatus != null" >
+        #{istatus,jdbcType=INTEGER},
+      </if>
+      <if test="ireporterid != null" >
+        #{ireporterid,jdbcType=INTEGER},
+      </if>
+      <if test="sreportername != null" >
+        #{sreportername,jdbcType=VARCHAR},
+      </if>
+      <if test="dreport != null" >
+        #{dreport,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iapproverid != null" >
+        #{iapproverid,jdbcType=INTEGER},
+      </if>
+      <if test="sapprovername != null" >
+        #{sapprovername,jdbcType=VARCHAR},
+      </if>
+      <if test="sapprovedes != null" >
+        #{sapprovedes,jdbcType=VARCHAR},
+      </if>
+      <if test="dapprove != null" >
+        #{dapprove,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sbz != null" >
+        #{sbz,jdbcType=VARCHAR},
+      </if>
+      <if test="sqyzt != null" >
+        #{sqyzt,jdbcType=VARCHAR},
+      </if>
+      <if test="xkzcod != null" >
+        #{xkzcod,jdbcType=REAL},
+      </if>
+      <if test="xkznh3n != null" >
+        #{xkznh3n,jdbcType=REAL},
+      </if>
+      <if test="xkztp != null" >
+        #{xkztp,jdbcType=REAL},
+      </if>
+      <if test="xkzfsl != null" >
+        #{xkzfsl,jdbcType=REAL},
+      </if>
+      <if test="xkzend != null" >
+        #{xkzend,jdbcType=DATE},
+      </if>
+      <if test="xkzyz != null" >
+        #{xkzyz,jdbcType=VARCHAR},
+      </if>
+      <if test="xkzname != null" >
+        #{xkzname,jdbcType=VARCHAR},
+      </if>
+      <if test="bdeleted != null" >
+        #{bdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="sfileids != null" >
+        #{sfileids,jdbcType=VARCHAR},
+      </if>
+      <if test="bssqy != null" >
+        #{bssqy,jdbcType=TINYINT},
+      </if>
+      <if test="dutydistrictid != null" >
+        #{dutydistrictid,jdbcType=BIGINT},
+      </if>
+      <if test="tmp != null" >
+        #{tmp,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiemj.pojo.company" >
+    update company
+    <set >
+      <if test="sname != null" >
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="idistrictid != null" >
+        idistrictid = #{idistrictid,jdbcType=BIGINT},
+      </if>
+      <if test="sdistrictname != null" >
+        sdistrictname = #{sdistrictname,jdbcType=VARCHAR},
+      </if>
+      <if test="itownid != null" >
+        itownid = #{itownid,jdbcType=BIGINT},
+      </if>
+      <if test="stownname != null" >
+        stownname = #{stownname,jdbcType=VARCHAR},
+      </if>
+      <if test="saddress != null" >
+        saddress = #{saddress,jdbcType=VARCHAR},
+      </if>
+      <if test="saddresssx != null" >
+        saddresssx = #{saddresssx,jdbcType=VARCHAR},
+      </if>
+      <if test="saddresssy != null" >
+        saddresssy = #{saddresssy,jdbcType=VARCHAR},
+      </if>
+      <if test="slevel != null" >
+        slevel = #{slevel,jdbcType=VARCHAR},
+      </if>
+      <if test="scategory != null" >
+        scategory = #{scategory,jdbcType=VARCHAR},
+      </if>
+      <if test="sproduct != null" >
+        sproduct = #{sproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="iwater != null" >
+        iwater = #{iwater,jdbcType=REAL},
+      </if>
+      <if test="iability != null" >
+        iability = #{iability,jdbcType=REAL},
+      </if>
+      <if test="ifactability != null" >
+        ifactability = #{ifactability,jdbcType=REAL},
+      </if>
+      <if test="swry != null" >
+        swry = #{swry,jdbcType=VARCHAR},
+      </if>
+      <if test="ipftype != null" >
+        ipftype = #{ipftype,jdbcType=INTEGER},
+      </if>
+      <if test="ipfid != null" >
+        ipfid = #{ipfid,jdbcType=INTEGER},
+      </if>
+      <if test="spfname != null" >
+        spfname = #{spfname,jdbcType=VARCHAR},
+      </if>
+      <if test="ipfok != null" >
+        ipfok = #{ipfok,jdbcType=INTEGER},
+      </if>
+      <if test="ifx != null" >
+        ifx = #{ifx,jdbcType=INTEGER},
+      </if>
+      <if test="izxjc != null" >
+        izxjc = #{izxjc,jdbcType=INTEGER},
+      </if>
+      <if test="standenterid != null" >
+        STANDENTERID = #{standenterid,jdbcType=VARCHAR},
+      </if>
+      <if test="ssjjl != null" >
+        ssjjl = #{ssjjl,jdbcType=VARCHAR},
+      </if>
+      <if test="srivername != null" >
+        srivername = #{srivername,jdbcType=VARCHAR},
+      </if>
+      <if test="iriverid != null" >
+        iriverid = #{iriverid,jdbcType=INTEGER},
+      </if>
+      <if test="ilevel != null" >
+        ilevel = #{ilevel,jdbcType=INTEGER},
+      </if>
+      <if test="uniscid != null" >
+        uniscid = #{uniscid,jdbcType=VARCHAR},
+      </if>
+      <if test="ibuild != null" >
+        ibuild = #{ibuild,jdbcType=INTEGER},
+      </if>
+      <if test="inet != null" >
+        inet = #{inet,jdbcType=INTEGER},
+      </if>
+      <if test="iok != null" >
+        iok = #{iok,jdbcType=INTEGER},
+      </if>
+      <if test="dupdatetime != null" >
+        dupdatetime = #{dupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sxkzbh != null" >
+        sxkzbh = #{sxkzbh,jdbcType=VARCHAR},
+      </if>
+      <if test="dxkz != null" >
+        dxkz = #{dxkz,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sfxjb != null" >
+        sfxjb = #{sfxjb,jdbcType=VARCHAR},
+      </if>
+      <if test="istatus != null" >
+        istatus = #{istatus,jdbcType=INTEGER},
+      </if>
+      <if test="ireporterid != null" >
+        ireporterid = #{ireporterid,jdbcType=INTEGER},
+      </if>
+      <if test="sreportername != null" >
+        sreportername = #{sreportername,jdbcType=VARCHAR},
+      </if>
+      <if test="dreport != null" >
+        dreport = #{dreport,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iapproverid != null" >
+        iapproverid = #{iapproverid,jdbcType=INTEGER},
+      </if>
+      <if test="sapprovername != null" >
+        sapprovername = #{sapprovername,jdbcType=VARCHAR},
+      </if>
+      <if test="sapprovedes != null" >
+        sapprovedes = #{sapprovedes,jdbcType=VARCHAR},
+      </if>
+      <if test="dapprove != null" >
+        dapprove = #{dapprove,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sbz != null" >
+        sbz = #{sbz,jdbcType=VARCHAR},
+      </if>
+      <if test="sqyzt != null" >
+        sqyzt = #{sqyzt,jdbcType=VARCHAR},
+      </if>
+      <if test="xkzcod != null" >
+        xkzcod = #{xkzcod,jdbcType=REAL},
+      </if>
+      <if test="xkznh3n != null" >
+        xkznh3n = #{xkznh3n,jdbcType=REAL},
+      </if>
+      <if test="xkztp != null" >
+        xkztp = #{xkztp,jdbcType=REAL},
+      </if>
+      <if test="xkzfsl != null" >
+        xkzfsl = #{xkzfsl,jdbcType=REAL},
+      </if>
+      <if test="xkzend != null" >
+        xkzend = #{xkzend,jdbcType=DATE},
+      </if>
+      <if test="xkzyz != null" >
+        xkzyz = #{xkzyz,jdbcType=VARCHAR},
+      </if>
+      <if test="xkzname != null" >
+        xkzname = #{xkzname,jdbcType=VARCHAR},
+      </if>
+      <if test="bdeleted != null" >
+        bdeleted = #{bdeleted,jdbcType=TINYINT},
+      </if>
+      <if test="sfileids != null" >
+        sfileids = #{sfileids,jdbcType=VARCHAR},
+      </if>
+      <if test="bssqy != null" >
+        bssqy = #{bssqy,jdbcType=TINYINT},
+      </if>
+      <if test="dutydistrictid != null" >
+        dutydistrictid = #{dutydistrictid,jdbcType=BIGINT},
+      </if>
+      <if test="tmp != null" >
+        tmp = #{tmp,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiemj.pojo.company" >
+    update company
+    set sname = #{sname,jdbcType=VARCHAR},
+      idistrictid = #{idistrictid,jdbcType=BIGINT},
+      sdistrictname = #{sdistrictname,jdbcType=VARCHAR},
+      itownid = #{itownid,jdbcType=BIGINT},
+      stownname = #{stownname,jdbcType=VARCHAR},
+      saddress = #{saddress,jdbcType=VARCHAR},
+      saddresssx = #{saddresssx,jdbcType=VARCHAR},
+      saddresssy = #{saddresssy,jdbcType=VARCHAR},
+      slevel = #{slevel,jdbcType=VARCHAR},
+      scategory = #{scategory,jdbcType=VARCHAR},
+      sproduct = #{sproduct,jdbcType=VARCHAR},
+      iwater = #{iwater,jdbcType=REAL},
+      iability = #{iability,jdbcType=REAL},
+      ifactability = #{ifactability,jdbcType=REAL},
+      swry = #{swry,jdbcType=VARCHAR},
+      ipftype = #{ipftype,jdbcType=INTEGER},
+      ipfid = #{ipfid,jdbcType=INTEGER},
+      spfname = #{spfname,jdbcType=VARCHAR},
+      ipfok = #{ipfok,jdbcType=INTEGER},
+      ifx = #{ifx,jdbcType=INTEGER},
+      izxjc = #{izxjc,jdbcType=INTEGER},
+      STANDENTERID = #{standenterid,jdbcType=VARCHAR},
+      ssjjl = #{ssjjl,jdbcType=VARCHAR},
+      srivername = #{srivername,jdbcType=VARCHAR},
+      iriverid = #{iriverid,jdbcType=INTEGER},
+      ilevel = #{ilevel,jdbcType=INTEGER},
+      uniscid = #{uniscid,jdbcType=VARCHAR},
+      ibuild = #{ibuild,jdbcType=INTEGER},
+      inet = #{inet,jdbcType=INTEGER},
+      iok = #{iok,jdbcType=INTEGER},
+      dupdatetime = #{dupdatetime,jdbcType=TIMESTAMP},
+      sxkzbh = #{sxkzbh,jdbcType=VARCHAR},
+      dxkz = #{dxkz,jdbcType=TIMESTAMP},
+      sfxjb = #{sfxjb,jdbcType=VARCHAR},
+      istatus = #{istatus,jdbcType=INTEGER},
+      ireporterid = #{ireporterid,jdbcType=INTEGER},
+      sreportername = #{sreportername,jdbcType=VARCHAR},
+      dreport = #{dreport,jdbcType=TIMESTAMP},
+      iapproverid = #{iapproverid,jdbcType=INTEGER},
+      sapprovername = #{sapprovername,jdbcType=VARCHAR},
+      sapprovedes = #{sapprovedes,jdbcType=VARCHAR},
+      dapprove = #{dapprove,jdbcType=TIMESTAMP},
+      sbz = #{sbz,jdbcType=VARCHAR},
+      sqyzt = #{sqyzt,jdbcType=VARCHAR},
+      xkzcod = #{xkzcod,jdbcType=REAL},
+      xkznh3n = #{xkznh3n,jdbcType=REAL},
+      xkztp = #{xkztp,jdbcType=REAL},
+      xkzfsl = #{xkzfsl,jdbcType=REAL},
+      xkzend = #{xkzend,jdbcType=DATE},
+      xkzyz = #{xkzyz,jdbcType=VARCHAR},
+      xkzname = #{xkzname,jdbcType=VARCHAR},
+      bdeleted = #{bdeleted,jdbcType=TINYINT},
+      sfileids = #{sfileids,jdbcType=VARCHAR},
+      bssqy = #{bssqy,jdbcType=TINYINT},
+      dutydistrictid = #{dutydistrictid,jdbcType=BIGINT},
+      tmp = #{tmp,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
