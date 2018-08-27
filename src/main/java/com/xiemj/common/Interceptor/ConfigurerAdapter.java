@@ -1,4 +1,6 @@
 /*
+
+用了shiro 就不需要再用拦截器了
 package com.xiemj.common.Interceptor;
 
 import org.springframework.context.annotation.Configuration;

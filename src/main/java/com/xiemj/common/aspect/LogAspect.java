@@ -23,8 +23,6 @@ import java.util.Date;
 @Aspect
 @Component
 public class LogAspect {
-  /*  @Autowired
-    private LogDao logMapper;*/
 
     @Pointcut("@annotation(com.xiemj.common.annotation.Log)")
     public void logPointCut()

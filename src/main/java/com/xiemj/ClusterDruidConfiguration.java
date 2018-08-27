@@ -20,6 +20,9 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+/**
+ * 数据源配置
+ */
 @Configuration
 @MapperScan(basePackages = "com.xiemj.dao1",sqlSessionFactoryRef = "clusterSqlSessionFactory")
 public class ClusterDruidConfiguration {

@@ -20,7 +20,13 @@ public class AuthRealm extends AuthorizingRealm
 
     @Autowired
     private SysService service;
-    //认证.登录
+
+    /**
+     * 认证.登录
+     * @param token
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //获取用户输入的token
@@ -33,7 +39,12 @@ public class AuthRealm extends AuthorizingRealm
 
         return new SimpleAuthenticationInfo(user, user.getPassword(),this.getClass().getName());
     }
-    //授权
+
+    /**
+     * 授权
+     * @param principal
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal) {
         //获取session中的用户
