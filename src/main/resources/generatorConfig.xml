@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+         <!DOCTYPE generatorConfiguration
+                 PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+                "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+         <generatorConfiguration>
+         <classPathEntry
+                 location="C:/mysql-connector-java-5.1.43.jar"/>
+         <context id="my" targetRuntime="MyBatis3">
+             <!-- 生成的Java文件的编码-->
+             <commentGenerator>
+                 <property name="suppressDate" value="false"/>
+                 <property name="suppressAllComments" value="true"/>
+                 <property name="javaFileEncoding" value="UTF-8"/>
+             </commentGenerator>
+
+             <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                             connectionURL="jdbc:mysql://127.0.0.1:3306/shiro" userId="root"
+                             password="123456"/>
+
+             <javaModelGenerator targetPackage="com.xiemj.pojo"
+                                 targetProject="C:/Data/xiemj/SpringBoot/src/main/java">
+                 <property name="enableSubPackages" value="true"/>
+                 <property name="trimStrings" value="true"/>
+             </javaModelGenerator>
+
+             <sqlMapGenerator targetPackage="resources/mapper"
+                              targetProject="C:/Data/xiemj/SpringBoot/src/main">
+                 <property name="enableSubPackages" value="true"/>
+             </sqlMapGenerator>
+
+                 <javaClientGenerator targetPackage="com.xiemj.dao"
+                                      targetProject="C:/Data/xiemj/SpringBoot/src/main/java" type="XMLMAPPER">
+                     <property name="enableSubPackages" value="true"/>
+                 </javaClientGenerator>
+
+                 <table tableName="company" domainObjectName="company"
+                enableCountByExample="false" enableUpdateByExample="false"
+              enableDeleteByExample="false" enableSelectByExample="false"
+                selectByExampleQueryId="false"/>
+
+
+
+             </context>
+         </generatorConfiguration>
