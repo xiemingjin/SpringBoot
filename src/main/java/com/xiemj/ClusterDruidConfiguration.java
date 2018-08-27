@@ -28,71 +28,71 @@ public class ClusterDruidConfiguration {
     static final String MAPPER_LOCATION = "classpath:mapper/cluster/*.xml";
 
     @Value("${spring.datasource.cluster.url}")
-    private String dbUrl;
+    private String clusterdbUrl;
     @Value("${spring.datasource.cluster.username}")
-    private String username;
+    private String clusterusername;
     @Value("${spring.datasource.cluster.password}")
-    private String password;
+    private String clusterpassword;
     @Value("${spring.datasource.cluster.driverClassName}")
-    private String driverClassName;
+    private String clusterdriverClassName;
     @Value("${spring.datasource.cluster.initialSize}")
-    private int initialSize;
+    private int clusterinitialSize;
     @Value("${spring.datasource.cluster.minIdle}")
-    private int minIdle;
+    private int clusterminIdle;
     @Value("${spring.datasource.cluster.maxActive}")
-    private int maxActive;
+    private int clustermaxActive;
     @Value("${spring.datasource.cluster.maxWait}")
-    private int maxWait;
+    private int clustermaxWait;
     @Value("${spring.datasource.cluster.timeBetweenEvictionRunsMillis}")
-    private int timeBetweenEvictionRunsMillis;
+    private int clustertimeBetweenEvictionRunsMillis;
     @Value("${spring.datasource.cluster.minEvictableIdleTimeMillis}")
-    private int minEvictableIdleTimeMillis;
+    private int clusterminEvictableIdleTimeMillis;
     @Value("${spring.datasource.cluster.validationQuery}")
-    private String validationQuery;
+    private String clustervalidationQuery;
     @Value("${spring.datasource.cluster.testWhileIdle}")
-    private boolean testWhileIdle;
+    private boolean clustertestWhileIdle;
     @Value("${spring.datasource.cluster.testOnBorrow}")
-    private boolean testOnBorrow;
+    private boolean clustertestOnBorrow;
     @Value("${spring.datasource.cluster.testOnReturn}")
-    private boolean testOnReturn;
+    private boolean clustertestOnReturn;
     @Value("${spring.datasource.cluster.poolPreparedStatements}")
-    private boolean poolPreparedStatements;
+    private boolean clusterpoolPreparedStatements;
     @Value("${spring.datasource.cluster.maxPoolPreparedStatementPerConnectionSize}")
-    private int maxPoolPreparedStatementPerConnectionSize;
+    private int clustermaxPoolPreparedStatementPerConnectionSize;
     @Value("${spring.datasource.cluster.filters}")
-    private String filters;
+    private String clusterfilters;
     @Value("${spring.datasource.cluster.connectionProperties}")
-    private String connectionProperties;
+    private String clusterconnectionProperties;
     @Value("${spring.datasource.cluster.useGlobalDataSourceStat}")
-    private boolean useGlobalDataSourceStat;
+    private boolean clusteruseGlobalDataSourceStat;
     //声明其为Bean实例
     @Bean(name = "clusterDataSource")
     public DataSource clusterDataSource(){
         DruidDataSource clusterDatasource = new DruidDataSource();
-        clusterDatasource.setUrl(this.dbUrl);
-        clusterDatasource.setUsername(username);
-        clusterDatasource.setPassword(password);
-        clusterDatasource.setDriverClassName(driverClassName);
+        clusterDatasource.setUrl(this.clusterdbUrl);
+        clusterDatasource.setUsername(clusterusername);
+        clusterDatasource.setPassword(clusterpassword);
+        clusterDatasource.setDriverClassName(clusterdriverClassName);
         //configuration
-        clusterDatasource.setInitialSize(initialSize);
-        clusterDatasource.setMinIdle(minIdle);
-        clusterDatasource.setMaxActive(maxActive);
-        clusterDatasource.setMaxWait(maxWait);
-        clusterDatasource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
-        clusterDatasource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
-        clusterDatasource.setValidationQuery(validationQuery);
-        clusterDatasource.setTestWhileIdle(testWhileIdle);
-        clusterDatasource.setTestOnBorrow(testOnBorrow);
-        clusterDatasource.setTestOnReturn(testOnReturn);
-        clusterDatasource.setPoolPreparedStatements(poolPreparedStatements);
-        clusterDatasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
-        clusterDatasource.setUseGlobalDataSourceStat(useGlobalDataSourceStat);
+        clusterDatasource.setInitialSize(clusterinitialSize);
+        clusterDatasource.setMinIdle(clusterminIdle);
+        clusterDatasource.setMaxActive(clustermaxActive);
+        clusterDatasource.setMaxWait(clustermaxWait);
+        clusterDatasource.setTimeBetweenEvictionRunsMillis(clustertimeBetweenEvictionRunsMillis);
+        clusterDatasource.setMinEvictableIdleTimeMillis(clusterminEvictableIdleTimeMillis);
+        clusterDatasource.setValidationQuery(clustervalidationQuery);
+        clusterDatasource.setTestWhileIdle(clustertestWhileIdle);
+        clusterDatasource.setTestOnBorrow(clustertestOnBorrow);
+        clusterDatasource.setTestOnReturn(clustertestOnReturn);
+        clusterDatasource.setPoolPreparedStatements(clusterpoolPreparedStatements);
+        clusterDatasource.setMaxPoolPreparedStatementPerConnectionSize(clustermaxPoolPreparedStatementPerConnectionSize);
+        clusterDatasource.setUseGlobalDataSourceStat(clusteruseGlobalDataSourceStat);
         try {
-            clusterDatasource.setFilters(filters);
+            clusterDatasource.setFilters(clusterfilters);
         } catch (SQLException e) {
             System.err.println("druid configuration initialization filter: "+ e);
         }
-        clusterDatasource.setConnectionProperties(connectionProperties);
+        clusterDatasource.setConnectionProperties(clusterconnectionProperties);
         return clusterDatasource;
     }
 
