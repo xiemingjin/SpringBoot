@@ -12,7 +12,7 @@ public class Main {
         t1.start();
         ThreadExtend t2 = new ThreadExtend();
         t2.start();
-t2.setName("t2");
+        t2.setName("t2");
         ThreadImpl t3 = new ThreadImpl();
         Thread t4 = new Thread(t3);
         //要启动一个新的线程就必须new一个Thread对象出来
