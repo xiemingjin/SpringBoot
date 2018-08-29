@@ -10,18 +10,22 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class Test {
+
+
     public static void main(String[] args) {
         testVoid();
     }
 
 
-
-    // 测试无返回结果
+    /**
+     * 测试无返回结果
+     */
      private static void testVoid() {
                  AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AsyncTaskConfig.class);
                  AsyncTaskService asyncTaskService = context.getBean(AsyncTaskService.class);
+                int ThreadSize = 20;
                  // 创建了20个线程
-                for (int i = 1; i <= 20; i++) {
+                for (int i = 1; i <= ThreadSize; i++) {
                         asyncTaskService.executeAsyncTask(i);
                 }
 
@@ -29,14 +33,16 @@ public class Test {
              }
 
 
-
-    // 测试有返回结果
-     private static void testReturn() throws InterruptedException, ExecutionException {
+    /**
+     * 测试有返回结果
+     * @throws InterruptedException
+     * @throws ExecutionException
+     */
+    private static void testReturn() throws InterruptedException, ExecutionException {
                  AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AsyncTaskConfig.class);
                  AsyncTaskService asyncTaskService = context.getBean(AsyncTaskService.class);
-// 存放所有的线程，用于获取结果
+                // 存放所有的线程，用于获取结果
                  List<Future<String>> lstFuture = new ArrayList<Future<String>>();
-
                  // 创建100个线程
                  for (int i = 1; i <= 100; i++) {
                          while (true) {

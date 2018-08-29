@@ -19,10 +19,11 @@ public class AsyncTaskService
     Random random = new Random();
 
 
-
-
-     // 表明是异步方法
-   // 无返回值
+    /**
+     * 无返回值
+     * 表明是异步方法
+     * @param i
+     */
      @Async
     public void executeAsyncTask(Integer i)
      {
@@ -30,13 +31,13 @@ public class AsyncTaskService
      }
 
 
-            /**
-             * 异常调用返回Future
-             *
-             * @param i
-             * @return
-             * @throws InterruptedException
-             */
+    /**
+     * 异常调用返回Future
+     *
+     * @param i
+     * @return
+     * @throws InterruptedException
+     */
      @Async
      public Future<String> asyncInvokeReturnFuture(int i) throws InterruptedException
      {
