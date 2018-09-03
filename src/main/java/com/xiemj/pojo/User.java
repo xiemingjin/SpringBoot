@@ -1,5 +1,9 @@
 package com.xiemj.pojo;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,17 +11,17 @@ import java.util.Set;
 /**
  * 用户信息user 表pojo
  */
+
+@Getter
+@Setter
 public class User implements Serializable{
 
     private  Integer  uid;
-
     private  String  username;
-
     private String password;
-
     private Set<Role> roles = new HashSet<>();
 
-    public Integer getUid() {
+  /*  public Integer getUid() {
         return uid;
     }
 
@@ -48,5 +52,5 @@ public class User implements Serializable{
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
+*/
 }
