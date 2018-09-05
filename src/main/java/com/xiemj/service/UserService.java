@@ -32,7 +32,7 @@ public class UserService {
 
     }
 
-@Transactional(propagation = Propagation.REQUIRED,rollbackFor = Exception.class)
+@Transactional(propagation = Propagation.REQUIRES_NEW,rollbackFor = Exception.class)
     public  void  update()
     {
         Map<String ,Object> user=new HashMap<>();
