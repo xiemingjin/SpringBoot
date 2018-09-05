@@ -1,7 +1,6 @@
 package com.xiemj.controller;
 
-import com.xiemj.MogodbDao.UserDao;
-import com.xiemj.pojo.UserEntity;
+import com.xiemj.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,35 +12,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class UserDaoTest {
 
     @Autowired
-    private UserDao userDao;
+    private UserService service;
+
 
     @Test
-    public void testSaveUser() throws Exception {
-        UserEntity user=new UserEntity();
-        user.setId(2L);
-        user.setUserName("小明");
-        user.setPassWord("fffooo123");
-        userDao.saveUser(user);
+    public void testSaveUser()  {
+        service.test();
     }
 
-    @Test
-    public void findUserByUserName(){
-        UserEntity user= userDao.findUserByUserName("小明");
-        System.out.println("user is "+user);
-    }
 
-    @Test
-    public void updateUser(){
-        UserEntity user=new UserEntity();
-        user.setId(2L);
-        user.setUserName("天空");
-        user.setPassWord("fffxxxx");
-        userDao.updateUser(user);
-    }
 
-    @Test
-    public void deleteUserById(){
-        userDao.deleteUserById(1L);
-    }
 
 }

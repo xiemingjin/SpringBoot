@@ -1,5 +1,7 @@
+/*
 package com.xiemj.MogodbDao;
 
+import com.xiemj.dao.UserDao;
 import com.xiemj.pojo.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -15,20 +17,24 @@ public class UserDaoImp implements UserDao {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    /**
+    */
+/**
      * 创建对象
      * @param user
-     */
+     *//*
+
     @Override
     public void saveUser(UserEntity user) {
         mongoTemplate.save(user);
     }
 
-    /**
+    */
+/**
      * 根据用户名查询对象
      * @param userName
      * @return
-     */
+     *//*
+
     @Override
     public UserEntity findUserByUserName(String userName) {
         Query query=new Query(Criteria.where("userName").is(userName));
@@ -36,10 +42,12 @@ public class UserDaoImp implements UserDao {
         return user;
     }
 
-    /**
+    */
+/**
      * 更新对象
      * @param user
-     */
+     *//*
+
     @Override
     public void updateUser(UserEntity user) {
         Query query=new Query(Criteria.where("id").is(user.getId()));
@@ -50,13 +58,16 @@ public class UserDaoImp implements UserDao {
         // mongoTemplate.updateMulti(query,update,UserEntity.class);
     }
 
-    /**
+    */
+/**
      * 删除对象
      * @param id
-     */
+     *//*
+
     @Override
     public void deleteUserById(Long id) {
         Query query=new Query(Criteria.where("id").is(id));
         mongoTemplate.remove(query,UserEntity.class);
     }
 }
+*/

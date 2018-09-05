@@ -101,7 +101,6 @@ public class ClusterDruidConfiguration {
 
 
     @Bean(name = "clusterTransactionManager")
-    @Primary
     public DataSourceTransactionManager clusterTransactionManager() {
         return new DataSourceTransactionManager(clusterDataSource());
     }
@@ -145,7 +144,6 @@ public class ClusterDruidConfiguration {
     }
 
     @Bean(name = "clusterSqlSessionTemplate")
-    @Primary
     public SqlSessionTemplate setSqlSessionTemplate(@Qualifier("clusterSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
