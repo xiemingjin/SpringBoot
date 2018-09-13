@@ -3,6 +3,7 @@ package com.xiemj.common.aspect;
 import com.xiemj.common.annotation.Log;
 import com.xiemj.common.utils.HttpContextUtils;
 import com.xiemj.common.utils.JSONUtils;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

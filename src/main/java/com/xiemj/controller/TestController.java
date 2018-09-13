@@ -20,6 +20,8 @@ public class TestController extends BaseController {
         @RequestMapping(value = "/add")
     @Log("调用的是add")
     public ResponseEntity<String> add( ){
+
+
         Map<String,Object> reusltMap = testService.queryList();
         return super.toJsonResponse(reusltMap);
     }

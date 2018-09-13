@@ -9,7 +9,6 @@ import java.util.concurrent.Callable;
 public class MyTask implements Callable
 {
 
-
     private String threadName;
     private List<String> data;
     private int start;

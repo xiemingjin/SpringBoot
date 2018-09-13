@@ -17,7 +17,7 @@ public class UserDaoTest {
 
     @Test
     public void testSaveUser()  {
-        service.test();
+        /*service.test();*/
     }
 
 

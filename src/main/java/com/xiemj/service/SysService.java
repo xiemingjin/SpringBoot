@@ -1,9 +1,11 @@
 package com.xiemj.service;
 
+import com.xiemj.common.exception.BusinessException;
 import com.xiemj.dao.SysDao;
 import com.xiemj.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +20,9 @@ public class SysService {
     @Autowired
     private SysDao dao;
 
-    public User findUserByName (String username )
+
+    @Transactional(rollbackFor =Exception.class)
+    public User findUserByName  (String username )
     {
 
         User user = new User();
